@@ -48,6 +48,7 @@ export const useUserStore = create((set, get) => ({
     try {
       const response = await axios.get("/auth/profile");
       set({user: response.data, checkingAuth:false});
+     
       
     
       
@@ -100,10 +101,13 @@ export default useUserStore;
 
 let refreshPromise = null;
 axios.interceptors.response.use(
+  
   (response) => response, // if nothing is wrong, it will move on
   async (error) => { // if we get error we check for autherization error
+    console.log("==INTERCEPTED==");
     const orignalRequest = error.config;
     if (error.response?.status === 401 && !orignalRequest._retry){
+      console.log("==INTERCEPTED 401==");
       orignalRequest._retry= true;// retrying the request again 
       try{// trying to get access token from refresh token
         //if a refresh in progress, wait for it to complete
@@ -119,10 +123,12 @@ axios.interceptors.response.use(
 
       }catch(refreshError){
         //If refresh fails redirect to login
+        console.log("==INTERCEPTED REFRESH ERROR==");
         useUserStore.getState().logout(); 
         return Promise.reject(refreshError);
       }
     }
+    console.log("==INTERCEPTED REJECTING ERROR==>",error);
     return Promise.reject(error);
   }
 );

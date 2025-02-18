@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { ShoppingCart, ChevronLeft, ChevronRight } from "lucide-react";
 import { useCartStore } from "../stores/useCartStore";
+import "react-lazy-load-image-component/src/effects/blur.css";
+
 
 export const FeaturedProducts = ({ featuredProducts }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -32,6 +34,15 @@ export const FeaturedProducts = ({ featuredProducts }) => {
   const isStartDisabled = currentIndex === 0;
   const isEndDisabled = currentIndex >= featuredProducts.length - itemsPerPage;
 
+  const shrinkName = (product)=>{
+    var name = product.name;
+    if(name.length > 23){
+
+       name = product.name.slice(0,23) + "..."
+    }
+    return name
+  }
+
   return (
     <div className="py-12">
       <div className="container mx-auto px-4">
@@ -57,13 +68,15 @@ export const FeaturedProducts = ({ featuredProducts }) => {
                     <div className="overflow-hidden">
                       <img
                         src={product.image}
-                        alt={product.name}
-                        className="w-full h-48 object-cover transition-transform duration-300 ease-in-out hover:scale-110"
+                      
+                        className="w-full h-48 object-cover transition-transform duration-300 ease-in-out hover:scale-110 "
                       />
+                   
                     </div>
                     <div className="p-4">
                       <h3 className="text-lg font-semibold mb-2 text-white">
-                        {product.name}
+                        
+                        {shrinkName(product)}
                       </h3>
                       <p className="text-emerald-300 font-medium mb-4">
                         ${product.price.toFixed(2)}

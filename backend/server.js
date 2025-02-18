@@ -17,6 +17,11 @@ import categoryRoutes from './routes/category.route.js';
 
 dotenv.config()
 
+
+//Setting up timezones
+process.env.TZ = 'Africa/Cairo';
+
+
 const app =express()
 const port = process.env.NODE_PORT | 3000;
 

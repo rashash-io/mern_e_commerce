@@ -23,13 +23,14 @@ import {
 import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import { MainAppStyleContainer, Navbar, LoadingSpinner } from "./components";
-import useUserStore from "./stores/useUserStore";
+import {useUserStore} from "./stores";
 
 function App() {
   const { user, checkAuth, checkingAuth } = useUserStore();
 
   useEffect(() => {
     checkAuth();
+   
   }, [checkAuth]);
   
   if (checkingAuth) return <LoadingSpinner />;

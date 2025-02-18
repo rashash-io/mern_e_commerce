@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 export const CategoryItem = ({ category }) => {
   return (
@@ -6,6 +7,7 @@ export const CategoryItem = ({ category }) => {
       <Link to={"/category" + category.href}>
         <div className="w-full h-full cursor-pointer">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900 opacity-50 z-10" />
+          
           <img
             src={category.imageUrl}
             alt={category.name}
