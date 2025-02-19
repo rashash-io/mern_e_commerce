@@ -6,3 +6,4 @@ export * from "./LoginPage";
 export * from "./PurchaseCancelPage";
 export * from "./PurchaseSuccessPage"
 export * from './SignUpPage'
+export * from './ProductPage'

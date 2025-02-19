@@ -11,8 +11,8 @@ export const Navbar = () => {
   const isAdmin = user?.role === "admin";
   return (
     <div className="relative z-50 pt-20">
-      <header className="fixed top-0 left-0 w-full bg-gray-900 bg-opacity-90 backdrop-blur-md shadow-lg z-40 transition all duration-300 border-b border-emerald-800">
-        <div className="container mx-auto px-4 py-3">
+      <header className="fixed top-0 left-0 w-full bg-gray-900/70 bg-opacity-50 backdrop-blur-md shadow-lg z-40 transition all duration-300 border-b-3 border-emerald-700">
+        <div className="container mx-auto px-4 py-4">
           <div className="flex flex-wrap justify-between items-center">
             {/*-------- ICON / LOGO --------*/}
             <Link

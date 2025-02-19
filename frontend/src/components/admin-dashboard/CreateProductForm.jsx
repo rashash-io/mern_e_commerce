@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { CheckCheck, Loader, PlusCircle, Upload } from "lucide-react";
 import { useState } from "react";
+import {DragAndDrop} from '../../components'
 import useProductStore from "../../stores/useProductStore";
 
 const categories = [
@@ -21,6 +22,7 @@ export const CreateProductForm = () => {
     category: "",
     image: "",
   });
+   const [dragDropFiles, setDragDropFiles] = useState([]);
   const { createProduct, loading } = useProductStore();
 
   const handleSubmit = async (e) => {
@@ -45,9 +47,11 @@ export const CreateProductForm = () => {
   };
   const handleImageChange = (e) => {
     const file = e.target.files[0]; //getting the file the user selected
+    console.log(file)
     if (file) {
       const reader = new FileReader(); //Creating a file reader
       reader.onloadend = () => {
+       
         //basically updating state
         setNewProduct({ ...newProduct, image: reader.result });
       };
@@ -165,7 +169,9 @@ export const CreateProductForm = () => {
             ))}
           </select>
         </div>
-        {/* Image Upload */}
+
+        <DragAndDrop onFilesSelected={setDragDropFiles} />
+        {/* OLD Image Upload */}
         {/* Converting image to base64 */}
         <div className="mt-1 flex items-center">
           <input
@@ -189,6 +195,7 @@ export const CreateProductForm = () => {
             </span>
           )}
         </div>
+        
 
         {/* Submit Button */}
         <button
