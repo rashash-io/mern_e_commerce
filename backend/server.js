@@ -32,6 +32,7 @@ app.use(
     origin: [
       process.env.CLIENT_URL,
       process.env.LOCALHOST_URL,
+      "https://m.stripe/6"
     ],
     methods: ["GET", "POST", "DELETE", "PUT", "HEAD", "PATCH"],
     credentials: true,

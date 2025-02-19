@@ -11,7 +11,11 @@ export * from "./cart/GiftCouponCard";
 export * from "./cart/OrderSummary";
 export * from "./cart/PeopleAlsoBought";
 
-//Admin Components Folder
+// --------- Admin Portal Components  --------- //
+//Categories
+export * from './admin-dashboard/categories/CategoriesListItem'
+
+
 export * from "./admin-dashboard/AnalyticsTab";
 export * from "./admin-dashboard/CategoriesTab";
 export * from "./admin-dashboard/CreateCategoryForm";

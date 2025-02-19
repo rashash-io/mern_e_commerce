@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Trash, Star } from "lucide-react";
 import { useProductStore } from "../../stores/useProductStore";
+import { shrinkName } from "../../utils";
 
 
 export const ProductsList = () => {
@@ -63,7 +64,7 @@ export const ProductsList = () => {
                   </div>
                   <div className="ml-4">
                     <div className="text-sm font-medium text-white">
-                      {product.name}
+                      {shrinkName(product,20)}
                     </div>
                   </div>
                 </div>

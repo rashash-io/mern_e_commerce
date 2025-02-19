@@ -9,7 +9,7 @@ export const CreateCategoryForm = () => {
     enabled: false,
     image: "",
   });
-  const { createCategory, loading } = useCategoryStore();
+  const { createCategory, loading , fetchAllCategories} = useCategoryStore();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,6 +22,7 @@ export const CreateCategoryForm = () => {
         image: "",
         enabled: false,
       });
+      fetchAllCategories()
     } catch (error) {
       console.log("Error Creating Category at handleSubmit createCategory");
       console.log("Error ==>", error);
@@ -42,15 +43,16 @@ export const CreateCategoryForm = () => {
 
     return (
       <motion.div
-        className="bg-gray-800 shadow-lg rounded-lg p-8 mb-8 max-w-xl mx-auto"
+        className="bg-gray-800 shadow-lg rounded-lg p-8  max-w-xl "
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
+        {" "}
+  
         <h2 className="text-2xl font-semibold mb-6 text-emerald-300">
           Create New Category
         </h2>
-
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Category Name */}
           <div>
@@ -75,10 +77,6 @@ export const CreateCategoryForm = () => {
             />
           </div>
 
-
-        
-
-          
           {/* Image Upload */}
           {/* Converting image to base64 */}
           <div className="mt-1 flex items-center">

@@ -1,5 +1,6 @@
 import cloudinary from "../lib/cloudinary.js";
 import  {Category}  from "../models/category.model.js";
+import Product from "../models/product.model.js";
 //
 //TODO: Put the categories in redis db
 //
@@ -31,7 +32,11 @@ export const createCategory = async (req, res) => {
     }
 
     const category= await Category.create({
-      name, image, enabled,
+      name, 
+      image : cloudinaryResponse?.secure_url
+        ? cloudinaryResponse.secure_url
+        : "", 
+      enabled,
     })
 
     res.status(201).json({ message: "Category created successfully", id:category._id });
@@ -47,7 +52,20 @@ export const createCategory = async (req, res) => {
   
 };
 
+export const toggleEnable = async(req, res)=>{
+try{
+  const category = await Category.findById(req.params.id);
+  if(category){
+    category.enabled = !category.enabled;
+    const updatedCategory = await category.save()
+    res.json(updatedCategory);
+  }else{
+     res.status(404).json({ message: "Category not found" });
+  }
+}catch(error){ console.log("Error in toggleEnable controller", error.message);
+res.status(500).json({ message: "Server error", error: error.message });}
 
+}
 
 export const updateCategory = async (req, res) => {
   try{
@@ -75,10 +93,10 @@ export const deleteCategory = async (req, res) => {
    if (!category) {
      return res.status(404).json({ message: "Category not found" });
    }
-   if (product.image) {
-    const publicId = product.image.split("/").pop().split(".")[0];
+   if (category.image) {
+    const publicId = category.image.split("/").pop().split(".")[0];
     try {
-      await cloudinary.uploader.destroy(`products/${publicId}`);
+      await cloudinary.uploader.destroy(`categories/${publicId}`);
       console.log("deleted image from cloduinary");
     } catch (error) {
       console.log("error deleting image from cloduinary", error);
@@ -86,11 +104,11 @@ export const deleteCategory = async (req, res) => {
    }
 
    await Category.findByIdAndDelete(req.params.id)
-   res.json({ message: "Category deleted successfully", id: req.params.id});
+   return res.status(201).json({ message: "Category deleted successfully", id: req.params.id});
 
 
  }catch(error){
   console.log("deleteCategory controller Error ==> ",error)
-   res.status(500).json({ message: "Server error", error: error.message });
+   res.status(500).json({ message: "Server error", error: error });
  }
 };
