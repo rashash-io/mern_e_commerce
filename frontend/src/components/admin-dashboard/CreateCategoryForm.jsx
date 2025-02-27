@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useCategoryStore } from "../../stores";
 import {motion} from 'framer-motion'
-import { CheckCheck, Loader, Upload,PlusCircle } from "lucide-react";
+import { CheckCheck, Loader, Upload,PlusCircle, LoaderCircle } from "lucide-react";
 
 export const CreateCategoryForm = () => {
   const [newCategory, setNewCategory] = useState({
@@ -49,7 +49,6 @@ export const CreateCategoryForm = () => {
         transition={{ duration: 0.8 }}
       >
         {" "}
-  
         <h2 className="text-2xl font-semibold mb-6 text-emerald-300">
           Create New Category
         </h2>
@@ -75,6 +74,54 @@ export const CreateCategoryForm = () => {
 						focus:ring-emerald-500 focus:border-emerald-500"
               required
             />
+          </div>
+          {/* ---------- ENABLE TOGGLE---------- */}
+          <div className="flex flex-row">
+
+          <label className="toggle text-base-content">
+            <input
+              type="checkbox"
+              onChange={(e) => setNewCategory({...newCategory, enabled: e.target.checked})}
+              checked={newCategory.enabled}
+            />
+            <svg
+              aria-label="disabled"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
+            <svg
+              aria-label="enabled"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <g
+                strokeLinejoin="round"
+                strokeLinecap="round"
+                strokeWidth="4"
+                fill="none"
+                stroke="currentColor"
+              >
+                <path d="M20 6 9 17l-5-5"></path>
+              </g>
+            </svg>
+          </label>
+          <button className="ml-2 text-sky-400 hover:text-sky-300">
+            {loading ? (
+              <LoaderCircle className="animate-spin" />
+            ) : newCategory.enabled ? (
+              "  SHOWN"
+            ) : (
+              "  HIDDEN"
+            )}
+          </button>
           </div>
 
           {/* Image Upload */}

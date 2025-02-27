@@ -30,9 +30,12 @@ const __dirname = path.resolve();// the root dirtectoery of the project
 app.use(
   cors({
     origin: [
-      process.env.CLIENT_URL,
-      process.env.LOCALHOST_URL,
-      "https://m.stripe/6"
+       process.env.CLIENT_URL,
+       process.env.LOCALHOST_URL,
+       "http://10.0.10.115:3000",
+       "http://10.0.10.115:5500",
+       "https://m.stripe/6",
+       "https://api.rashash.io"
     ],
     methods: ["GET", "POST", "DELETE", "PUT", "HEAD", "PATCH"],
     credentials: true,

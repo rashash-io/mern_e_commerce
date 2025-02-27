@@ -1,11 +1,11 @@
 import toast from "react-hot-toast";
 import { ShoppingCart } from "lucide-react";
-import { useUserStore, useCartStore, useProductStore } from "../stores";
+import { useUserStore, useCartStore } from "../stores";
+import { shrinkName } from "../utils";
 
 
 export const ProductCard = ({ product }) => {
   const { user } = useUserStore();
-  const {fetchProductsByCategory} = useProductStore();
   const { addToCart } = useCartStore();
   const handleAddToCart = () => {
     if (!user) {
@@ -18,7 +18,7 @@ export const ProductCard = ({ product }) => {
   };
 
   return (
-    <div className="flex w-full relative flex-col overflow-hidden rounded-lg border border-gray-700 shadow-lg">
+    <div className="flex w-full relative flex-col overflow-hidden bg-gray-950 rounded-lg border border-emerald-700 shadow-lg">
       <div className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl">
         <img
           className="object-cover w-full"
@@ -30,7 +30,7 @@ export const ProductCard = ({ product }) => {
 
       <div className="mt-4 px-5 pb-5">
         <h5 className="text-xl font-semibold tracking-tight text-white">
-          {product.name}
+          {shrinkName(product.name,20)}
         </h5>
         <div className="mt-2 mb-5 flex items-center justify-between">
           <p>

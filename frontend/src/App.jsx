@@ -23,7 +23,7 @@ import {
 //Components import
 import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
-import { MainAppStyleContainer, Navbar, LoadingSpinner } from "./components";
+import { MainAppStyleContainer, LoadingSpinner, Header } from "./components";
 import {useUserStore} from "./stores";
 
 function App() {
@@ -39,7 +39,8 @@ function App() {
     <>
       {/*Gradient & Background gradient */}
       <MainAppStyleContainer>
-        <Navbar />
+    
+        <Header />
 
         <Routes>
           <Route

@@ -27,7 +27,7 @@ export const CategoriesListItem = ({ category }) => {
           </div>
           <div className="ml-4">
             <div className="text-sm font-medium text-white">
-              {shrinkName(category, 20)}
+              {shrinkName(category.name, 20)}
             </div>
           </div>
         </div>
@@ -74,9 +74,9 @@ export const CategoriesListItem = ({ category }) => {
           {loading ? (
             <LoaderCircle className="animate-spin" />
           ) : enabledActive ? (
-            "  ENABLED"
+            "  SHOWN"
           ) : (
-            "  DISABLED"
+            "  HIDDEN"
           )}
         </button>
         {/* ---------- EDIT CATEGORY ---------- */}

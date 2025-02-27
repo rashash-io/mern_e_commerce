@@ -64,7 +64,7 @@ export const ProductsList = () => {
                   </div>
                   <div className="ml-4">
                     <div className="text-sm font-medium text-white">
-                      {shrinkName(product,20)}
+                      {shrinkName(product.name,20)}
                     </div>
                   </div>
                 </div>

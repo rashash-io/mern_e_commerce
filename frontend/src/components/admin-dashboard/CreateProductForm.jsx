@@ -2,7 +2,8 @@ import { motion } from "framer-motion";
 import { CheckCheck, Loader, PlusCircle, Upload } from "lucide-react";
 import { useState } from "react";
 import {DragAndDrop} from '../../components'
-import useProductStore from "../../stores/useProductStore";
+import {useProductStore} from "../../stores";
+import { useEffect } from "react";
 
 const categories = [
   "jeans",
@@ -15,14 +16,19 @@ const categories = [
 ];
 
 export const CreateProductForm = () => {
+  const [dragDropFiles, setDragDropFiles] = useState([]);
   const [newProduct, setNewProduct] = useState({
     name: "",
     description: "",
     price: "",
     category: "",
     image: "",
+    images: [],
   });
-   const [dragDropFiles, setDragDropFiles] = useState([]);
+  useEffect(()=>{
+    setNewProduct({ ...newProduct, images: dragDropFiles});
+   
+  },[dragDropFiles])
   const { createProduct, loading } = useProductStore();
 
   const handleSubmit = async (e) => {
@@ -37,6 +43,7 @@ export const CreateProductForm = () => {
         price: "",
         category: "",
         image: "",
+        images: [],
       });
     } catch(error) {
       console.log("Error creating a product at handleSubmit at Create product form");
@@ -58,6 +65,7 @@ export const CreateProductForm = () => {
       reader.readAsDataURL(file); //base64 format
     }
   };
+
 
   return (
     <motion.div

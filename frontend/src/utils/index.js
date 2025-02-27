@@ -1,7 +1,7 @@
-export const shrinkName = (product, length) => {
-  var name = product.name;
+export const shrinkName = (itemName, length) => {
+  var name = itemName;
   if (name.length > length) {
-    name = product.name.slice(0, length) + "...";
+    name = itemName.slice(0, length) + "...";
   }
   return name;
 };

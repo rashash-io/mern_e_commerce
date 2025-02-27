@@ -12,7 +12,7 @@ export const useCategoryStore = create((set, get) => ({
     set({ loading: true });
     try {
       const res = await axios.post("/categories", categoryData);
-      console.log("res useCategoryStore CreateCatfunc ==>", res?.data);
+    
 
       set((prevState) => ({
         categries: [...prevState.categories, res.data],
@@ -32,7 +32,7 @@ export const useCategoryStore = create((set, get) => ({
     useCategoryStore.setState([{ categories: "AMRRMRM" }]);
     try {
       const resp = await axios.get("/categories");
-      console.log("Fetch All Func ====>", resp.data.categories);
+      
       set({
         categories: resp?.data?.categories,
         loading: false,

@@ -20,7 +20,7 @@ export const CategoryItem = ({ category }) => {
           />
           <div className="absolute bottom-0 left-0 shadow-xl border-t-2 border-emerald-500 right-0 p-4 z-20 bg-black/50 group-hover:bg-black/80 transition-all duration-400 backdrop-filter backdrop-blur-md">
             <h3 className="text-white text-2xl font-bold mb-2 group-hover:text-emerald-500">
-              {shrinkName(category, 20)}
+              {shrinkName(category.name, 20)}
             </h3>
             <p className="text-sky-500 text-sm flex items-center gap-2">
               Explore {category.name} <ArrowRight />

@@ -17,7 +17,12 @@ const productSchema = new mongoose.Schema(
     },
     image: {
       type: String,
-      required: [true, "Image is required"],
+      default: "I am loosing my mind..",
+      //required: [true, "Image is required"],
+    },
+    images:{
+      type: Array,
+      
     },
     category: {
       type: String,

@@ -1,11 +1,18 @@
 export * from "./CategoryItem";
-export * from "./DragAndDrop";
 export * from "./FeaturedProducts";
 export * from "./LoadingSpinner";
 export * from "./MainAppStyleContainer";
-export * from "./Navbar";
 export * from "./ProductCard";
-export * from "./SearchProduct";
+export * from './SideCategory'
+
+// -------------------- Header ------------------- //
+export * from "./header/DesktopNav";
+export * from "./header/Header";
+export * from "./header/SearchProduct";
+export * from "./header/MobileNav"
+
+// -------------------- Drag And Drop ------------------- //
+export * from "./dragDrop/DragAndDrop";
 
 // -------------------- Cart ------------------- //
 export * from "./cart/CartItem";
@@ -19,6 +26,7 @@ export * from "./admin-dashboard/categories/CategoriesListItem";
 
 export * from "./admin-dashboard/AnalyticsTab";
 export * from "./admin-dashboard/CategoriesTab";
+export * from './admin-dashboard/categories/CategoryEditItem'
 export * from "./admin-dashboard/CreateCategoryForm";
 export * from "./admin-dashboard/CreateProductForm";
 export * from "./admin-dashboard/ProductsList";
